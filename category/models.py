@@ -1,4 +1,5 @@
 from django.db import models
+
 class Subcategory(models.Model):
     name = models.CharField(max_length=20, unique=True)
     slug = models.SlugField(max_length=20, unique=True)
@@ -21,6 +22,7 @@ class Subcategory(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Category(models.Model):
     subcategory = models.ManyToManyField(Subcategory, related_name='categories')

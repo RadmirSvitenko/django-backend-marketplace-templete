@@ -1,13 +1,13 @@
 from .models import Category, Subcategory
 from rest_framework import serializers
-
+from drf_spectacular.utils import extend_schema
 class SubcategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Subcategory
         fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):
-    subcategory = SubcategorySerializer(many=True, read_only=True)
+    subcategory = serializers.PrimaryKeyRelatedField(many=True, queryset=Subcategory.objects.all())
 
     class Meta:
         model = Category

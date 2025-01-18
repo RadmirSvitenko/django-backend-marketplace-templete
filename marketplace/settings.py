@@ -23,6 +23,14 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    ],
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,16 +47,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'user',
     'category',
-    'product'
+    'product',
+    'cart'
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer'
-    ],
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
